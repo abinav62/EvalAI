@@ -53,10 +53,3 @@ def get_auth_token(request):
     return Response(response_data, status=status.HTTP_200_OK)
 
 
-@api_view(["POST"])
-@permission_classes((permissions.IsAuthenticated,))
-@authentication_classes((ExpiringTokenAuthentication,))
-def resend_confirmation_email(request):
-    user = request.user
-    send_email_confirmation(request._request, user)
-    return Response(status=status.HTTP_200_OK)
